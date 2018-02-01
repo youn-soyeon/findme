@@ -9,18 +9,38 @@
 	<br> <br> <br>
 	<p style="font-size: 50px; text-align: center; color: black;">F I N
 		D M E</p>
-	<br> <br>
+	<br>
 	<div class="row" style="margin: auto; text-align: center;">
 		<div class="container text-center">
-			<h3>#${hashtagSearch}</h3>
-			<br>
+			<h3>전체 분실물 모아보기</h3>
+			<br> <a class="navbar-brand">FIND ITEM</a>
 			<div class="row">
+				<c:forEach items="${findList}" var="findList">
+					<div class="row">
+						<div class="col-sm-4">
+							<img src='./resources/${findList.fPicture }' class="img-responsive"
+								style="width: 100%" alt="Image">
+							<p>${findList.fAddress}</p>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 
-				<c:forEach items="${hashList}" var="hashList">
-					<div class="col-sm-4">
-						<img src="${hashList.fPicture}" class="img-responsive"
-							style="width: 100%" alt="Image">
-						<p>${hashList.fAddress}</p>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br> <a class="navbar-brand">LOST ITEM</a>
+			<div class="row">
+				<c:forEach items="${lostList}" var="lostList">
+					<div class="row">
+						<div class="col-sm-4">
+							<img src='./resources/${lostList.lPicture }' class="img-responsive"
+								style="width: 100%" alt="Image">
+							<p>${lostList.lAddress}</p>
+						</div>
 					</div>
 				</c:forEach>
 
@@ -28,8 +48,17 @@
 		</div>
 		<br>
 	</div>
+
 </div>
-<br><br><br><br><br><br><br>
+	
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div id="footer" class="container">
 	<jsp:include page="footer.jsp" />
 </div>
@@ -59,7 +88,7 @@
 	 </c:forEach> */
 
 	function init() {
-		 
+
 	}
 	window.onload = init();
 </script>

@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); // for 한글
+
 		String loginId = request.getParameter("loginId");
 		String loginPassword = request.getParameter("loginPassword");
 
@@ -32,11 +32,12 @@ public class LoginServlet extends HttpServlet {
 
 		MemberDAO memberDao = new MemberDAOImpl();
 		Member loginMember = memberDao.login(loginId, loginPassword);
-
+		System.out.println(loginMember.getMemId());
 		if (loginMember.getMemId() != null) {
 			HttpSession session = request.getSession();
+			session.setAttribute("loginId", loginId);
 			session.setAttribute("loginMember", loginMember);
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("main.do");
 
 			return;
 		} else {

@@ -12,7 +12,7 @@ public interface MemberDAO {
 	public Member login(String memId, String password);
 
 	// U
-	public int update(String memId);
+	public boolean update(Member member);
 
 	// D
 	public int delete(String memId);

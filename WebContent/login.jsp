@@ -8,25 +8,29 @@
 	<p style="font-size: 50px; text-align: center; color: black;">F I N
 		D M E</p>
 	<form method="post" action="./login.do">
-		<h5 class="title_content">login</h5>
-		<div class="form-group">
-			<label for="loginId" class="addlabel" style="float: left;">ID</label>
-			<input type="text" class="form-control" id="loginId" name="loginId"
-				placeholder="Enter Your ID"> <small id="emailHelp"
-				class="form-text text-muted addlabel">We'll never share your
-				ID with anyone else.</small>
+	<div class="col-md-2"></div>
+		<div class="col-md-8" style="margin: auto;">
+			<h5 class="title_content">login</h5>
+			<div class="form-group">
+				<label for="loginId" class="addlabel" style="float: left;">ID</label>
+				<input type="text" class="form-control" id="loginId" name="loginId"
+					placeholder="Enter Your ID"> <small id="emailHelp"
+					class="form-text text-muted addlabel">We'll never share your
+					ID with anyone else.</small>
+			</div>
+			<div class="form-group">
+				<label for="loginPassword" class="addlabel" style="float: left;">Password</label>
+				<input type="password" class="form-control" id="loginPassword"
+					password="password" name="loginPassword" placeholder="Password"
+					width="50%">
+			</div><br><br>
+			<button id="loginBtn" type="submit" class="btn btn-outline-info">로그인</button>
+			<button id="resetBtn" type="reset" class="btn btn-outline-secondary">취소</button>
 		</div>
-		<div class="form-group">
-			<label for="loginPassword" class="addlabel" style="float: left;">Password</label>
-			<input type="password" class="form-control" id="loginPassword"
-				password="password" name="loginPassword" placeholder="Password"
-				width="50%">
-		</div>
-		<button id="loginBtn" type="submit" class="btn btn-outline-info">로그인</button>
-		<button id="resetBtn" type="reset" class="btn btn-outline-secondary">취소</button>
+		<div class="col-md-2"></div>
 	</form>
 	<br>
-	<br>
+	<br><br><br>
 </div>
 <div id="footer" class="container">
 	<jsp:include page="footer.jsp" />

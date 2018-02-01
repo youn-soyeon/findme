@@ -31,7 +31,7 @@
 				<table class="table">
 					<tr>
 						<td>작성자</td>
-						<td colspan="2" class="write-tab-td">admin</td>
+						<td colspan="2" class="write-tab-td">${loginMember.getMemId()}</td>
 					</tr>
 					<tr>
 						<td>습득/분실<br>날짜

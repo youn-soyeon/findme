@@ -1,4 +1,4 @@
-<%@page import="com.findme.model.vo.Finditem"%>
+<%-- <%@page import="com.findme.model.vo.Finditem"%>
 <%@page import="com.findme.model.dao.FinditemDAO"%>
 <%@page import="com.findme.model.dao.FinditemDAOImpl"%>
 <%@page import="java.util.ArrayList"%>
@@ -70,4 +70,4 @@
     window.onload = init();
 </script>
 </body>
-</html>
+</html> --%>

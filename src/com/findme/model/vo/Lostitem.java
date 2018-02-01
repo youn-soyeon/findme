@@ -11,8 +11,21 @@ public class Lostitem {
 	private int lDone;
 	private String writer;
 
-	public Lostitem(String lDate, String lAddress, String lContent, String lPicture,
-			String lHashtag, String writer) {
+	public Lostitem(int lId, String lDate, String lAddress, String lContent, String lPicture, String lHashtag,
+			String lUpDate, int lDone, String writer) {
+
+		this.lId = lId;
+		this.lDate = lDate;
+		this.lAddress = lAddress;
+		this.lContent = lContent;
+		this.lPicture = lPicture;
+		this.lHashtag = lHashtag;
+		this.lUpDate = lUpDate;
+		this.lDone = lDone;
+		this.writer = writer;
+	}
+
+	public Lostitem(String lDate, String lAddress, String lContent, String lPicture, String lHashtag, String writer) {
 		this.lDate = lDate;
 		this.lAddress = lAddress;
 		this.lContent = lContent;

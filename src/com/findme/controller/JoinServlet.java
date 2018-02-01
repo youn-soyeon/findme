@@ -15,38 +15,38 @@ import com.findme.model.vo.Member;
 @WebServlet("/join.do")
 public class JoinServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L; // Á÷·ÄÈ­
+	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); // for ÇÑ±Û
+		request.setCharacterEncoding("utf-8");
 
-		String memid = request.getParameter("memid"); // ¾ÆÀÌµğ
-		String password = request.getParameter("password"); // ºñ¹Ğ¹øÈ£
-		String password_check = request.getParameter("password_check"); // ºñ¹Ğ¹øÈ£
-																		// È®ÀÎ
+		String memid = request.getParameter("memid");
+		String password = request.getParameter("password");
+		String password_check = request.getParameter("password_check");
 
 		if (memid == null || memid.trim().length() == 0 || password == null || password.trim().length() == 0
-				|| password_check == null || password_check.trim().length() == 0 || !(password.equals(password_check))) {
-			System.out.println("À¯È¿¼º °Ë»ç ½ÇÆĞ"); // À¯È¿¼º °Ë»ç È®ÀÎ
+				|| password_check == null || password_check.trim().length() == 0
+				|| !(password.equals(password_check))) {
+			System.out.println("ìœ íš¨ì„± ì²´í¬ ì§„ì…");
 
-			request.setAttribute("errorMessage", "À¯È¿¼º °Ë»ç ½ÇÆĞ");
+			request.setAttribute("errorMessage", "ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			request.getRequestDispatcher("join.jsp").forward(request, response);
 
-			return; // ÆäÀÌÁö ÀÌµ¿ ±¸¹®ÇÒ ¶§´Â return ²À!
+			return;
 		}
 
 		MemberDAO memberDao = new MemberDAOImpl();
 		boolean joinResult = memberDao.join(new Member(memid, password));
 
-		if (joinResult != false) { // ·Î±×ÀÎ ¼º°ø
-			System.out.println("°¡ÀÔ ¼º°ø");
-			// request.getRequestDispatcher("main.jsp");
-			response.sendRedirect("main.jsp");
+		if (joinResult != false) {
+			System.out.println("ë¡œê·¸ì¸ì„±ê³µ");
+			// request.getRequestDispatcher("main.do");
+			response.sendRedirect("main.do");
 			return;
-		} else { // ·Î±×ÀÎ ½ÇÆĞ
-			System.out.println("°¡ÀÔ ½ÇÆĞ");
-			request.setAttribute("errorMessage", "·Î±×ÀÎ ½ÇÆĞ");
+		} else {
+			System.out.println("ë¡œê·¸ì¸ì‹¤íŒ¨");
+			request.setAttribute("errorMessage", "ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			request.getRequestDispatcher("join.jsp").forward(request, response);
 			return;
 		}

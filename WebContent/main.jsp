@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="header.jsp" />
 
 <div id="content" class="container">
 	<br>
 	<br>
-	<br>
+	<br><br>
 	<p style="font-size: 50px; text-align: center; color: black;">F I N
 		D M E</p>
 	<br>
 	<br>
 	<div class="row" style="margin: auto; text-align: center;">
-
 		<div class="col-md-1"></div>
 		<div class="col-lg-2">
 			<button id="addrSearchBtn" class="btn btn-outline-info">주소
 				검색</button>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-7">
 			<form method="post" action="addrSearch.do">
 				<div class="input-group">
 					<input id="addrInput" name="addrInput" type="text" class="form-control"
@@ -27,15 +27,36 @@
 						<input type="hidden" id="hiddenBname" name="searchBname">
 					</div>
 				</div>
-			</form>
-			<div class="col-lg-1"></div>
+			</form><br><br><br><br><br>
+	<div class="row" style="margin: auto; text-align: center;"><h4>등록된 분실물 수 : </h4></div>
+	<div class="row" style="margin: auto; text-align: center;"><h4>찾은 분실물 수 : </h4></div>
+	
+	<div class="row" style="margin: auto; text-align: center;">
+		<div class="container text-center">
+			<h3>최근 등록된 분실물 Top 3</h3>
+			<br>
+			<div class="row">
+              
+              <c:forEach items="${findItemList}" var="findItem"> 
+                 <div class="col-sm-4">
+                  <img src='./resources/${findItem.fPicture }' class="img-responsive" style="width: 100%" alt="Image">
+                  <p>${findItem.fAddress}</p>
+                  </div>
+               </c:forEach>
+            </div>
 		</div>
+		<br>
 	</div>
+			<div class="col-lg-2"></div>
+		</div>
+	</div><br><br><br>
+	</div>
+	
 	<div id="footer" class="container">
 		<jsp:include page="footer.jsp" />
 	</div>
 
-</div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

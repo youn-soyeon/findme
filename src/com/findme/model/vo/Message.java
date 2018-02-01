@@ -8,6 +8,27 @@ public class Message {
 	private int reDelFlag;
 	private int seDelFlag;
 	private String sender;
+	private String msgTitle;
+
+	public Message(String receiver, String msgContent, String sender, String msgTitle) {
+		super();
+		this.receiver = receiver;
+		this.msgContent = msgContent;
+		this.sender = sender;
+		this.msgTitle = msgTitle;
+	}
+
+	public Message(int msgId, String receiver, String msgContent, String msgDate, int reDelFlag, int seDelFlag,
+			String sender, String msgTitle) {
+		this.msgId = msgId;
+		this.receiver = receiver;
+		this.msgContent = msgContent;
+		this.msgDate = msgDate;
+		this.reDelFlag = reDelFlag;
+		this.seDelFlag = seDelFlag;
+		this.sender = sender;
+		this.msgTitle = msgTitle;
+	}
 
 	public int getMsgId() {
 		return msgId;
@@ -63,6 +84,14 @@ public class Message {
 
 	public void setSender(String sender) {
 		this.sender = sender;
+	}
+
+	public String getMsgTitle() {
+		return msgTitle;
+	}
+
+	public void setMsgTitle(String msgTitle) {
+		this.msgTitle = msgTitle;
 	}
 
 	@Override
