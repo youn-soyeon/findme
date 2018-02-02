@@ -80,26 +80,6 @@
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new daum.maps.services.Geocoder();
 			var addr = markerList[i].fAddress;
-		    
-/* 			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch(searchAddr, function(result, status) {
-
-			    // 정상적으로 검색이 완료됐으면 
-			     if (status === daum.maps.services.Status.OK) {
-
-			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-			        // 결과값으로 받은 위치를 마커로 표시합니다
-			        var marker = new daum.maps.Marker({
-			            map: map,
-			            position: coords
-			        });
-
-
-			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-			        map.setCenter(coords);
-			    } 
-			});     */
 			
 			// 주소로 좌표를 검색합니다
 			geocoder.addressSearch(addr, function(currentIdx){
@@ -139,9 +119,9 @@
 												+ "<h4 class='card-header' id='findDateH6'>물건 습득일 : </h4>"
 												+ ""
 												+"<div class='card-body'>"
-													+"<h5 class='card-subtitle text-muted' style='float:right;'>작성자 : <a href='sendMsg.jsp' id='writerIdH3'></a></h5>"
+													+"<h5 class='card-subtitle text-muted' style='float:right;'>작성자 : <a href='sendMsg.jsp?receiverId="+markerList[currentIdx].writer+"' id='writerIdH3'></a></h5>"
 												+"</div>"
-												+"<img style=' display: block;' src='./resources/"+markerList[currentIdx].fPicture+"' alt='Card image'>"
+												+"<img style=' display: block; height:300px' src='./resources/"+markerList[currentIdx].fPicture+"' alt='Card image'>"
 												+"<div class='card-body'>"
 													+"<p class='card-text' id='contentsP'></p>"
 												+"</div>"
@@ -151,7 +131,6 @@
 										$('#findDateH6').append(markerList[currentIdx].fDate);
 										$('#contentsP').append(markerList[currentIdx].fContent);
 										$('#hashtagDiv').append(markerList[currentIdx].fHashtag);
-										
 									}
 									
 								);

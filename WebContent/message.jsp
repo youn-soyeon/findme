@@ -115,6 +115,18 @@
 		+ '                <div class="card-body">'
 		+ '                    <p id="contentP" class="card-text"></p>'
 		+ '                </div>'
+		+ '                <div class="card-footer">'
+		+ '                    <p id="contentP" class="card-text"><button class="btn btn-info" id="resendMsgBtn">답장보내기</button></p>'
+		+ '                </div>'
+		+ '            </div>';
+	var msgHtml2 = '<br><br><div class="card mb-3">'
+		+ '                <h3 id="msgSenderH3" class="card-header"> </h3>'
+		+ '                <div class="card-body">'
+		+ '                    <h6 id="msgDatdH6" class="card-subtitle text-muted">수신일 : </h6>'
+		+ '                </div>'
+		+ '                <div class="card-body">'
+		+ '                    <p id="contentP" class="card-text"></p>'
+		+ '                </div>'
 		+ '            </div>';
 		
 	function init() {
@@ -132,22 +144,23 @@
 			$('#msgSenderH3').append($(this).children('td[name="receiveSenderTd"]').text());
 			$('#msgDatdH6').append($(this).children('td[name="receiveDateTd"]').text());
 			$('#contentP').append($(this).children('input[name="receiveContentInput"]').val());
-			
+			$('#resendMsgBtn').attr("data-to-id",$(this).children('td[name="receiveSenderTd"]').text() );
+			$('#resendMsgBtn').click(function() {
+				location.href= "sendMsg.jsp?receiverId="+$(this).attr("data-to-id");
+			});
 			//alert($(this).children('input[name="receiveContentInput"]').val());
 		});
 		
 		$('#sendMsg').children('tr').click(function () {
 			$("#msgContentDiv").empty();
-			$("#msgContentDiv").append(msgHtml);
+			$("#msgContentDiv").append(msgHtml2);
 			$('#msgSenderH3').append($(this).children('td[name="sendReceiverTd"]').text());
 			$('#msgDatdH6').append($(this).children('td[name="sendDateTd"]').text());
 			$('#contentP').append($(this).children('input[name="sendContentInput"]').val());
-			$('#resendMsgBtn').cilck(function() {
-				alert('ㅎㅎㅎ');
-			});
 		})
 		
 
+		
 		
 	}
 	

@@ -10,6 +10,15 @@ public class Finditem {
 	private String fUpDate;
 	private int fDone;
 	private String writer;
+	private String fModiDate;
+
+	public String getfModiDate() {
+		return fModiDate;
+	}
+
+	public void setfModiDate(String fModiDate) {
+		this.fModiDate = fModiDate;
+	}
 
 	public Finditem(String fDate, String fAddress, String fContent, String fPicture, String fHashtag, String writer) {
 		this.fDate = fDate;
@@ -20,7 +29,7 @@ public class Finditem {
 		this.writer = writer;
 	}
 
-	public Finditem(int fId, String fDate, String fAddress, String fContent, String fPicture, String fHashtag,
+/*	public Finditem(int fId, String fDate, String fAddress, String fContent, String fPicture, String fHashtag,
 			String fUpDate, int fDone, String writer) {
 		this.fId = fId;
 		this.fDate = fDate;
@@ -31,6 +40,21 @@ public class Finditem {
 		this.fUpDate = fUpDate;
 		this.fDone = fDone;
 		this.writer = writer;
+	}*/
+	
+	public Finditem(int fId, String fDate, String fAddress, String fContent, String fPicture, String fHashtag,
+			String fUpDate, int fDone, String writer, String fModiDate) {
+		super();
+		this.fId = fId;
+		this.fDate = fDate;
+		this.fAddress = fAddress;
+		this.fContent = fContent;
+		this.fPicture = fPicture;
+		this.fHashtag = fHashtag;
+		this.fUpDate = fUpDate;
+		this.fDone = fDone;
+		this.writer = writer;
+		this.fModiDate = fModiDate;
 	}
 
 	public int getfId() {
@@ -109,6 +133,7 @@ public class Finditem {
 	public String toString() {
 		return "Finditem [fId=" + fId + ", fDate=" + fDate + ", fAddress=" + fAddress + ", fContent=" + fContent
 				+ ", fPicture=" + fPicture + ", fHashtag=" + fHashtag + ", fUpDate=" + fUpDate + ", fDone=" + fDone
-				+ ", writer=" + writer + "]";
+				+ ", writer=" + writer + ", fModiDate=" + fModiDate + "]";
 	}
+
 }

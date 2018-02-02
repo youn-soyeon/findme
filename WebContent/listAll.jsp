@@ -4,7 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="header.jsp" />
-
 <div id="content" class="container">
 	<br> <br> <br>
 	<p style="font-size: 50px; text-align: center; color: black;">F I N
@@ -13,34 +12,33 @@
 	<div class="row" style="margin: auto; text-align: center;">
 		<div class="container text-center">
 			<h3>전체 분실물 모아보기</h3>
-			<br> <a class="navbar-brand">FIND ITEM</a>
-			<div class="row">
-				<c:forEach items="${findList}" var="findList">
-					<div class="row">
-						<div class="col-sm-4">
-							<img src='./resources/${findList.fPicture }' class="img-responsive"
-								style="width: 100%" alt="Image">
-							<p>${findList.fAddress}</p>
+			<br> <p style="margin: auto; text-align: center; font-size:28px; color:black;">습득물</p>
+				<div class="row">
+					<c:forEach items="${findList}" var="findItem">
+					<div class="col-sm-4" name="onePost">
+					<input type="hidden" name="hiddenFId" value="${findItem.fId }">
+							<img src="./resources/${findItem.fPicture }"
+								class="img-responsive" alt="Image"
+								style="width: 100%; height: 150px;">
+							<p>${findItem.fAddress}</p>
+							<p>${findItem.fHashtag}</p>
 						</div>
-					</div>
-				</c:forEach>
-			</div>
-
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br> <a class="navbar-brand">LOST ITEM</a>
+					</c:forEach>
+					<br> <br> <br> <br>
+				</div>
+				<br> <br> <br><br>
+			</div><br> 
+			<br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br>
+			<p style="margin: auto; text-align: center; font-size:28px; color:black;">분실물</p>
 			<div class="row">
-				<c:forEach items="${lostList}" var="lostList">
-					<div class="row">
-						<div class="col-sm-4">
-							<img src='./resources/${lostList.lPicture }' class="img-responsive"
-								style="width: 100%" alt="Image">
-							<p>${lostList.lAddress}</p>
-						</div>
+				<c:forEach items="${lostList}" var="lostItem">
+					<div class="col-sm-4" name="onePost">
+                	 <input type="hidden" name="hiddenFId" value="${lostItem.lId }">
+						<img src='./resources/${lostItem.lPicture }'
+							class="img-responsive" style="width: 100%; height: 150px;"
+							alt="Image">
+						<p>${lostItem.lAddress}</p>
+						<p>${lostItem.lHashtag}</p>
 					</div>
 				</c:forEach>
 
@@ -48,9 +46,6 @@
 		</div>
 		<br>
 	</div>
-
-</div>
-	
 
 <br>
 <br>
@@ -88,7 +83,9 @@
 	 </c:forEach> */
 
 	function init() {
-
+		 $('div[name="onePost"]').click(function () {
+				location.href='detail.do?fId='+$(this).children('input[name="hiddenFId"]').val();
+			});
 	}
 	window.onload = init();
 </script>

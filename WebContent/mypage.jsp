@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="header.jsp" />
 <br>
 <br>
@@ -13,6 +14,7 @@
 		<div class="col-md-10">
 			<div class="tab-pane fade active show" id="receiveMsgDiv">
 				<br> <br>
+				<form action="donecheck.do" method="POST">
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-info" style="color: black;"
@@ -20,7 +22,6 @@
 							<th scope="col">번호</th>
 							<th scope="col">날짜</th>
 							<th scope="col">주소</th>
-							<th scope="col">글쓴이</th>
 							<th scope="col">선택</th>
 						</tr>
 					</thead>
@@ -28,23 +29,28 @@
 						<c:forEach items="${finditemList}" var="finditem">
 							<tr class="table-secondary">
 								<td scope="row">${finditem.fId}</td>
-								<td>${finditem.fDate}</td>
+								<td>
+									${finditem.fDate}
+								</td>
 								<td>${finditem.fAddress}</td>
-								<td>${finditem.writer}</td>
-								<td><input type="checkbox"></td>
+								<td><input id="doneCheck" name="doneCheck" type="radio" value="${finditem.fId}"></td>
 
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<button id="doneBtn" class="btn btn-danger" style="float:right">찾아줬어요!</button>
+				 <button id="editBtn" type="button" class="btn btn-warning" style="float:left">정보수정</button>
+			</form>
 			</div>
 		</div>
 		<div class="col-md-1"></div>
 		<br>
 		<br>
-		<br>
+		<br><br><br><br><br>
 	</div>
 </div>
+<br><br><br>
 <div id="footer" class="container">
 	<jsp:include page="footer.jsp" />
 </div>
@@ -67,10 +73,9 @@
 <!--my script-->
 <script>
 	function init() {
-		/* 		$('#joinBtn').click(function() {
-		 //alert('id : ' + $('#memid').val() + ' / pw : ' + $('#password').val() + ' / pwck : ' + $('#password_check').val());
-		
-		 }) */
+		$('#editBtn').click(function() {
+			location.href="edit.jsp";
+		});
 	}
 
 	window.onload = init();

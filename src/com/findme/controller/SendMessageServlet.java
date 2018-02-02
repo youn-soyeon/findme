@@ -26,7 +26,7 @@ public class SendMessageServlet extends HttpServlet {
       HttpSession session = request.getSession();
       Member member = new Member((String)session.getAttribute("loginId"), request.getParameter("password"));;
       
-      String mReceiver = request.getParameter("msgReceiver");;
+      String mReceiver = request.getParameter("msgReceiver");
       String mContents = request.getParameter("msgContents");
       String mSender = member.getMemId();
       String mTitle = request.getParameter("msgTitle");

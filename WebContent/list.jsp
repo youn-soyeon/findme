@@ -4,7 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="header.jsp" />
-
 <div id="content" class="container">
 	<br> <br> <br>
 	<p style="font-size: 50px; text-align: center; color: black;">F I N
@@ -16,11 +15,13 @@
 			<br>
 			<div class="row">
 
-				<c:forEach items="${hashList}" var="hashList">
-					<div class="col-sm-4">
-						<img src="${hashList.fPicture}" class="img-responsive"
-							style="width: 100%" alt="Image">
-						<p>${hashList.fAddress}</p>
+				<c:forEach items="${hashList}" var="hashItem">
+				<div class="col-sm-4" name="onePost">
+					<input type="hidden" name="hiddenFId" value="${hashItem.fId }">
+						<img src="./resources/${hashItem.fPicture }"
+							class="img-responsive" style="width: 100%; height: 150px"
+							alt="Image">
+						<p>${hashItem.fAddress}</p>
 					</div>
 				</c:forEach>
 
@@ -29,7 +30,13 @@
 		<br>
 	</div>
 </div>
-<br><br><br><br><br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div id="footer" class="container">
 	<jsp:include page="footer.jsp" />
 </div>
@@ -59,7 +66,9 @@
 	 </c:forEach> */
 
 	function init() {
-		 
+		 $('div[name="onePost"]').click(function () {
+				location.href='detail.do?fId='+$(this).children('input[name="hiddenFId"]').val();
+			});
 	}
 	window.onload = init();
 </script>

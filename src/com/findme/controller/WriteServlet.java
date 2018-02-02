@@ -31,8 +31,10 @@ public class WriteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member member = new Member((String) session.getAttribute("loginId"), request.getParameter("password"));
 		
-		String savePath = request.getServletContext().getRealPath("resources");
-		System.out.println("savePath : "+savePath);
+		System.out.println("*************아이디 : " + member.getMemId());
+		
+		
+		String savePath = getServletContext().getRealPath("resources");
 		int sizeLimit = 1024*1024*15;
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 		
@@ -45,28 +47,25 @@ public class WriteServlet extends HttpServlet {
 		String writer = member.getMemId();
 		
 		
-		System.out.println("itemType : " + type);
+/*		System.out.println("itemType : " + type);
 		System.out.println("itemDate : " + lDate);
 		System.out.println("itemAddress : " + lAddress);
 		System.out.println("itemContents : " + lContent);
 		System.out.println("itemPicture : " + lPicture);
 		System.out.println("itemhashtag : " + lHashtag);
 		System.out.println("itemWriter : " + writer);
-
-		
-		//memberDTO.setM_fileFullPath(m_fileFullPath);
-		//memberDTO.setM_fileName(fileName);
+*/
 		
 		if(type.equals("1")){
 			FinditemDAO FinditemDao = new FinditemDAOImpl();
-			FinditemDao.writeFinditem(new Finditem(lDate, lAddress, lContent,lPicture, lHashtag, "test"));
-			response.sendRedirect("main.jsp");
+			FinditemDao.writeFinditem(new Finditem(lDate, lAddress, lContent,lPicture, lHashtag, writer));
+			response.sendRedirect("main.do");
 			return;
 		}
 		if(type.equals("2")){
 			LostitemDAO lostitemDao = new LostitemDAOImpl();
-			lostitemDao.writeLostitem(new Lostitem(lDate, lAddress, lContent, lPicture, lHashtag, "test"));
-			response.sendRedirect("main.jsp");
+			lostitemDao.writeLostitem(new Lostitem(lDate, lAddress, lContent, lPicture, lHashtag, writer));
+			response.sendRedirect("main.do");
 		
 		return;
 		}

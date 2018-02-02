@@ -23,14 +23,14 @@
             <table class="table">
                <tr>
                   <td>받는 사람</td>
-                  <td colspan="2" class="write-tab-td"><textarea
-                        class="form-control" id="receiver" name="msgReceiver" rows="1"></textarea></td>
+                  <td colspan="2" class="write-tab-td"><input
+                        class="form-control" id="receiver" name="msgReceiver" value="<%= request.getParameter("receiverId") %>"/></td>
                </tr>
             
                <tr>
                   <td>제목</td>
-                  <td colspan="2" class="write-tab-td"><textarea
-                        class="form-control" id="title" name="msgTitle" rows="1"></textarea></td>
+                  <td colspan="2" class="write-tab-td"><input
+                        class="form-control" id="title" name="msgTitle" /></td>
                </tr>
               
               

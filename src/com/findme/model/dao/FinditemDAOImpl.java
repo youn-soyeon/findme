@@ -15,8 +15,8 @@ public class FinditemDAOImpl implements FinditemDAO {
 	public boolean writeFinditem(Finditem finditem) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
-		String sql = "insert into finditem values(fid_seq.nextval,?,?,?,?,?,sysdate,0,?)";
+
+		String sql = "insert into finditem values(fid_seq.nextval,?,?,?,?,?,sysdate,0,?,sysdate)";
 
 		try {
 			conn = DBUtil.getConnection();
@@ -54,28 +54,30 @@ public class FinditemDAOImpl implements FinditemDAO {
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
-	      String sql = "SELECT * FROM Finditem WHERE fDone = 0";
-	      try {
-	         conn = DBUtil.getConnection();
-	         pstmt = conn.prepareStatement(sql);
 
-	         rs = pstmt.executeQuery(); 
-	         
-	         while(rs.next()){
-	            finditems.add(new Finditem(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7),rs.getInt(8), rs.getString(9)));
-	         }
-	         
-	         return finditems;
+		String sql = "SELECT * FROM Finditem WHERE fDone = 0";
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
 
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         DBUtil.close(pstmt);
-	         DBUtil.close(conn);
-	      }
+			rs = pstmt.executeQuery();
 
-	      return finditems;
+			while (rs.next()) {
+				finditems.add(
+						new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10)));
+			}
+
+			return finditems;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+
+		return finditems;
 	}
 
 	@Override
@@ -86,13 +88,13 @@ public class FinditemDAOImpl implements FinditemDAO {
 
 	@Override
 	public ArrayList<Finditem> getFinditemByAddress(String address) {
-		
+
 		ArrayList<Finditem> finditems = new ArrayList<Finditem>();
 
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+
 		String sql = "SELECT * FROM Finditem WHERE fAddress like '%'||?||'%'";
 
 		try {
@@ -104,8 +106,9 @@ public class FinditemDAOImpl implements FinditemDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				finditems.add(new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9)));
+				finditems.add(
+						new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10)));
 			}
 
 			return finditems;
@@ -122,13 +125,13 @@ public class FinditemDAOImpl implements FinditemDAO {
 
 	@Override
 	public ArrayList<Finditem> getAllHashtags(String hashtag) {
-		
+
 		ArrayList<Finditem> finditems = new ArrayList<Finditem>();
 
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+
 		String sql = "SELECT * FROM Finditem WHERE fHashtag like '%'||?||'%'";
 
 		try {
@@ -140,8 +143,9 @@ public class FinditemDAOImpl implements FinditemDAO {
 			rs = pstmt.executeQuery(); // 가로안에 sql 넣지 않는다!
 
 			while (rs.next()) {
-				finditems.add(new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9)));
+				finditems.add(
+						new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10)));
 			}
 
 			return finditems;
@@ -158,13 +162,13 @@ public class FinditemDAOImpl implements FinditemDAO {
 
 	@Override
 	public ArrayList<Finditem> getTop3FinditemList() {
-		
+
 		ArrayList<Finditem> finditems = new ArrayList<Finditem>();
 
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+
 		String sql = "select * from (select * from finditem order by fupdate DESC) where rownum < 4";
 
 		try {
@@ -174,8 +178,9 @@ public class FinditemDAOImpl implements FinditemDAO {
 			rs = pstmt.executeQuery(); // 가로안에 sql 넣지 않는다!
 
 			while (rs.next()) {
-				finditems.add(new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9)));
+				finditems.add(
+						new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10)));
 			}
 
 			return finditems;
@@ -197,7 +202,7 @@ public class FinditemDAOImpl implements FinditemDAO {
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+
 		String sql = "SELECT * FROM Finditem WHERE memId = ? and fDone = 0 ORDER BY fId";
 
 		try {
@@ -209,8 +214,9 @@ public class FinditemDAOImpl implements FinditemDAO {
 			rs = pstmt.executeQuery(); // 가로안에 sql 넣지 않는다!
 
 			while (rs.next()) {
-				finditems.add(new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9)));
+				finditems.add(
+						new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10)));
 			}
 
 			return finditems;
@@ -224,4 +230,116 @@ public class FinditemDAOImpl implements FinditemDAO {
 
 		return null;
 	}
+
+	@Override
+	public boolean doneCheck(int fId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "UPDATE Finditem SET fDone = 1, fModiDate = sysdate WHERE fId = ?";
+
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, fId);
+
+			return pstmt.executeUpdate() > 0;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+
+		return false;
+	}
+
+	@Override
+	public int countTodayData() {
+		String sql = "SELECT count(*) FROM Finditem WHERE fUpdate between to_date(sysdate, 'yy/MM/DD') and to_date(sysdate+1, 'yy/MM/DD')";
+		int count = 0;
+
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+
+			return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+
+		return 0;
+	}
+
+	@Override
+	public int countTodayFinditem() {
+		String sql = "SELECT count(*) FROM Finditem WHERE fDone = 1 AND fModiDate between to_date(sysdate, 'yy/MM/DD') and to_date(sysdate+1, 'yy/MM/DD')";
+		int findcount = 0;
+
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				findcount = rs.getInt(1);
+			}
+
+			return findcount;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+		return 0;
+	}
+
+	@Override
+	public Finditem getFinditemByFId(int fId) {
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "SELECT * FROM Finditem WHERE fId = ?";
+		try {
+			conn = DBUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, fId);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return new Finditem(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+								rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(pstmt);
+			DBUtil.close(conn);
+		}
+
+		return null;
+	}
+
 }

@@ -40,7 +40,5 @@ public class MyPageServlet extends HttpServlet {
 
       request.setAttribute("finditemList",finditemList);
       request.getRequestDispatcher("mypage.jsp").forward(request, response);
-
-      
    }
 }

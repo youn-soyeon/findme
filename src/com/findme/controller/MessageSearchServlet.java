@@ -26,29 +26,25 @@ public class MessageSearchServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Member member = new Member((String) session.getAttribute("loginId"), request.getParameter("password"));
-		System.out.println("test");
 		// 보낸쪽지함
-		MessageDAO messageRecejveList = new MessageDAOImpl();
-		ArrayList<Message> sendList = messageRecejveList.getMsgListBySender(member.getMemId());
-		for (Message message : sendList) {
+		System.out.println(member.getMemId());
+		MessageDAO messageDao = new MessageDAOImpl();
+		ArrayList<Message> sendList = messageDao.getMsgListBySender(member.getMemId());
+		/*for (Message message : sendList) {
 			System.out.println("$$$$$$$$$$$$$$$$$$$ s num : " + message.getMsgId());
 			System.out.println(member.getMemId());
 			// message.getMsgId();
-		}
-		System.out.println("test2");
+		}*/
 		// 받은쪽지함
-		MessageDAO messageSendList = new MessageDAOImpl();
-
-		ArrayList<Message> receiveList = messageSendList.getMsgListByReceiver(member.getMemId());
-		for (Message message : receiveList) {
+		ArrayList<Message> receiveList = messageDao.getMsgListByReceiver(member.getMemId());
+		/*for (Message message : receiveList) {
 			System.out.println("$$$$$$$$$$$$$$$$$$$ r num : " + message.getMsgId());
 
-		}
+		}*/
 
 		request.setAttribute("receiveList", receiveList);
 		request.setAttribute("sendList", sendList);
 		request.getRequestDispatcher("message.jsp").forward(request, response);
-
 	}
 
 }

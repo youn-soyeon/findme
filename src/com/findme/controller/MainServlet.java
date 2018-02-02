@@ -26,12 +26,26 @@ public class MainServlet extends HttpServlet {
 		FinditemDAO finditemDao = new FinditemDAOImpl();
 		ArrayList<Finditem> findItemList = finditemDao.getTop3FinditemList();
 
-		for (int i = 0; i < findItemList.size(); i++) {
-			System.out.println(findItemList.get(i).getfPicture());
-			System.out.println(findItemList.get(i).getfAddress());
-		}
+		/*
+		 * for (int i = 0; i < findItemList.size(); i++) {
+		 * System.out.println(findItemList.get(i).getfPicture());
+		 * System.out.println(findItemList.get(i).getfAddress());
+		 * 
+		 * }
+		 */
+
+		int count = finditemDao.countTodayData();
+		int itemcount = finditemDao.countTodayFinditem();
+		System.out.println(itemcount);
 
 		request.setAttribute("findItemList", findItemList);
+		request.setAttribute("finditemCount", count);
+		
+
+		request.setAttribute("findItemList", findItemList);
+		request.setAttribute("todayCount", count);
+		request.setAttribute("itemCount", itemcount);
+
 		request.getRequestDispatcher("main.jsp").forward(request, response);
 
 	}

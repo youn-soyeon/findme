@@ -22,6 +22,13 @@ public interface FinditemDAO {
    public ArrayList<Finditem> getAllHashtags(String hashtag);
    
    public ArrayList<Finditem> getTop3FinditemList();
+   public Finditem getFinditemByFId(int fId);
+   
+   public boolean doneCheck(int fId);
+   
+   public int countTodayData();
+   
+   public int countTodayFinditem();
 
    // U
 
